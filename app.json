@@ -1,7 +1,0 @@
-{
-  "name": "Shh - It's a secret",
-  "description": "This app reveals a secret christmas gift",
-  "repository": "https://github.com/jhensley/shh",
-  "website": "https://shh-its-a-secret.herokuapp.com/",
-  "keywords": ["node", "express", "static"]
-}
