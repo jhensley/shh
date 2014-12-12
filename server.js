@@ -8,8 +8,12 @@ var port = process.env.PORT || 3000;
 
 app.use(express.static(html_dir));
 
-app.get('/', function(req, res) {
-    res.sendFile(html_dir + 'index.html');
+//app.get('/', function(req, res) {
+//    res.sendFile(html_dir + 'index.html');
+//});
+
+app.get("/", function(req, res) {
+    res.send("Heroku Demo!");
 });
 
 var server = app.listen(port, function () {
@@ -17,6 +21,6 @@ var server = app.listen(port, function () {
     var host = server.address().address
     var port = server.address().port
 
-    console.log('Example app listening at http://%s:%s', host, port)
+    console.log('App listening at http://%s:%s', host, port)
 
-})
+});
