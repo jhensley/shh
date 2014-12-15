@@ -1,7 +1,23 @@
-<section class="gifts">
+<section class="gifts" ng-controller="CardsCtrl">
     <swipe-cards>
         <swipe-card on-card-swipe="cardSwiped()" id="start-card">
-            This is the first card
+            <img src="img/logo.png" width="100px"/>
+            <span>You've opened {{ gift }}!</b></span>
+            <p>Swipe down for some interesting facts about this gift.</p>
+        </swipe-card>
+        <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)">
+            <div ng-controller="CardCtrl">
+                <div class="title">
+                    {{card.title}}
+                </div>
+                <div class="image">
+                    <img ng-src="{{card.image}}">
+                </div>
+                <div class="button-bar">
+                    <button class="button button-clear button-positive" ng-click="goAway()">Answer</button>
+                    <button class="button button-clear button-positive" ng-click="goAway()">Decline</button>
+                </div>
+            </div>
         </swipe-card>
     </swipe-cards>
 </section>

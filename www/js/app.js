@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('shh', ['ionic'])
+angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -32,7 +32,7 @@ angular.module('shh', ['ionic'])
     });
 
     $stateProvider.state('gifts', {
-      url: '/gifts',
+      url: '/gifts/{id:[0-9]{1,4}}',
       templateUrl: pageDir + 'gifts.html',
       controller: 'GiftsController'
     });
@@ -44,6 +44,17 @@ angular.module('shh', ['ionic'])
     });
 
     $urlRouterProvider.otherwise("/");
+})
+.directive('noScroll', function($document) {
+  return {
+    restrict: 'A',
+    link: function($scope, $element, $attr) {
+
+      $document.on('touchmove', function(e) {
+        e.preventDefault();
+      });
+    }
+  }
 })
 .controller('HomeController', ['$rootScope', '$scope', function($rootScope, $scope) {
   $rootScope.bodyClass='home-bg';
@@ -62,6 +73,47 @@ angular.module('shh', ['ionic'])
 .controller('RulesController', ['$rootScope', '$scope', function($rootScope, $scope) {
   $rootScope.bodyClass='rules-bg';
 }])
-.controller('GiftsController', ['$rootScope', '$scope', function($rootScope, $scope) {
+.controller('GiftsController', ['$rootScope', '$scope', '$stateParams', function($rootScope, $scope, $stateParams) {
   $rootScope.bodyClass='gifts-bg';
+  $scope.gift_number = $stateParams.id;
+  if ($stateParams.id == 1) {
+    $scope.gift = "a Johnny Mercer CD";
+  }
 }])
+.controller('CardsCtrl', ['$scope', '$ionicSwipeCardDelegate', function($scope, $ionicSwipeCardDelegate) {
+  var cardTypes = [{
+    title: 'This statue stands in Ellis Square - one of twenty-two squares of his birthplace.',
+    image: 'img/johnny-mercer-statue.jpg'
+  }, {
+    title: 'Johnny was one of the founding members of Capitol Records in 1942.',
+    image: 'img/mercer-capitol.jpg'
+  }, {
+    title: 'The Mercer House built in 1860 still stands in his hometown, though he never lived there.',
+    image: 'img/mercer-house.jpg'
+  }, {
+    title: 'Johhny and Ginger Mercer had a daugher ... named Mandy.',
+    image: 'img/mandy-mercer.jpg'
+  }];
+
+  $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+
+  $scope.cardSwiped = function(index) {
+    $scope.addCard(index);
+  };
+
+  $scope.cardDestroyed = function(index) {
+    $scope.cards.splice(index, 1);
+  };
+
+  $scope.addCard = function(index) {
+    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    newCard.id = Math.random();
+    $scope.cards.push(angular.extend({}, newCard));
+  }
+}])
+.controller('CardCtrl', ['$scope', '$ionicSwipeCardDelegate', function($scope, $ionicSwipeCardDelegate) {
+  $scope.goAway = function() {
+    var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
+    card.swipe();
+  };
+}]);
