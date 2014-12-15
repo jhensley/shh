@@ -43,6 +43,12 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
       controller: 'WhereController'
     });
 
+    $stateProvider.state('solve', {
+      url: '/solve',
+      templateUrl: pageDir + 'solve.html',
+      controller: 'SolveController'
+    });
+
     $urlRouterProvider.otherwise("/");
 })
 .directive('noScroll', function($document) {
@@ -58,14 +64,6 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
 })
 .controller('HomeController', ['$rootScope', '$scope', function($rootScope, $scope) {
   $rootScope.bodyClass='home-bg';
-  $rootScope.headerTitle = "Unlock-a-Gift";
-  $rootScope.rightButtons = [{
-    type: 'button-clear',
-    content: 'Get Started',
-    tap: function(e) {
-      $location.path("/#/rules");
-    }
-  }];
 }])
 .controller('WhereController', ['$rootScope', '$scope', function($rootScope, $scope) {
   $rootScope.bodyClass='where-bg';
@@ -73,27 +71,138 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
 .controller('RulesController', ['$rootScope', '$scope', function($rootScope, $scope) {
   $rootScope.bodyClass='rules-bg';
 }])
+.controller('SolveController', ['$rootScope', '$scope', function($rootScope, $scope) {
+  $rootScope.bodyClass='solve-bg';
+}])
 .controller('GiftsController', ['$rootScope', '$scope', '$stateParams', function($rootScope, $scope, $stateParams) {
   $rootScope.bodyClass='gifts-bg';
-  $scope.gift_number = $stateParams.id;
+  $scope.giftNumber = $stateParams.id;
   if ($stateParams.id == 1) {
     $scope.gift = "a Johnny Mercer CD";
   }
+  if ($stateParams.id == 2) {
+    $scope.gift = "Forces of Nature";
+  }
+  if ($stateParams.id == 3) {
+    $scope.gift = "Chickens?";
+  }
+  if ($stateParams.id == 4) {
+    $scope.gift = "Midnight in the Garden of Good and Evil";
+  }
+  if($stateParams.id < 5) {
+    $scope.nextGift = parseInt($stateParams.id)+1;
+  }
 }])
 .controller('CardsCtrl', ['$scope', '$ionicSwipeCardDelegate', function($scope, $ionicSwipeCardDelegate) {
-  var cardTypes = [{
+  var GiftOneCards = [{
+    index: 0,
     title: 'This statue stands in Ellis Square - one of twenty-two squares of his birthplace.',
     image: 'img/johnny-mercer-statue.jpg'
   }, {
+    index: 1,
     title: 'Johnny was one of the founding members of Capitol Records in 1942.',
     image: 'img/mercer-capitol.jpg'
   }, {
+    index: 2,
     title: 'The Mercer House built in 1860 still stands in his hometown, though he never lived there.',
     image: 'img/mercer-house.jpg'
   }, {
-    title: 'Johhny and Ginger Mercer had a daugher ... named Mandy.',
+    index: 3,
+    title: 'Johhny and Ginger Mercer had a daughter ... named Mandy.',
     image: 'img/mandy-mercer.jpg'
   }];
+
+  var GiftTwoCards = [{
+    index: 0,
+    title: 'Ben Affleck and Sandra Bullock star as Ben Holmes and Sarah in this romantic comedy.',
+    image: 'img/bullock-affeck.jpg'
+  }, {
+    index: 1,
+    title: "Bullock purchased this home after shooting the movie, loving the film's final setting.",
+    image: 'img/bullock-home.jpg'
+  }, {
+    index: 2,
+    title: 'On the trip, many setbacks prevent Ben and Sarah from getting to their destination.',
+    image: 'img/thunderstorm.jpg'
+  }, {
+    index: 3,
+    title: "The movie's tagline is: He went from the eye of the storm, into the arms of a hurricane.",
+    image: 'img/hurricane.jpg'
+  }];
+
+  var GiftThreeCards = [{
+    index: 0,
+    title: 'There are more chickens in the world than any other species of bird.',
+    image: 'img/rooster.jpg'
+  }, {
+    index: 1,
+    title: 'The creator of these kitchen accessories has chickens at her home off the Georgia coast.',
+    image: 'img/paula-deen.jpg'
+  }, {
+    index: 2,
+    title: 'Chickens are able to remember over 100 individuals; they can also recognise humans.',
+    image: 'img/smart-chicken.jpg'
+  }, {
+    index: 3,
+    title: 'Chickens can’t taste sweetness in foods however they can detect salt, and most avoid it.',
+    image: 'img/salt.jpg'
+  }];
+
+  var GiftFourCards = [{
+    index: 0,
+    title: 'Simply known as "The Book" in the location of this non-fiction tale.',
+    image: 'img/johnny-mercer-statue.jpg'
+  }, {
+    index: 1,
+    title: 'Once a drug store this cafe has become famous thanks to "The Book".',
+    image: 'img/clarys.jpg'
+  }, {
+    index: 2,
+    title: 'Test 2.',
+    image: 'img/mercer-house.jpg'
+  }, {
+    index: 3,
+    title: 'Test 3.',
+    image: 'img/mandy-mercer.jpg'
+  }];
+
+  var GiftFiveCards = [{
+    index: 0,
+    title: 'Test 0.',
+    image: 'img/johnny-mercer-statue.jpg'
+  }, {
+    index: 1,
+    title: 'Test 1.',
+    image: 'img/mercer-capitol.jpg'
+  }, {
+    index: 2,
+    title: 'Test 2.',
+    image: 'img/mercer-house.jpg'
+  }, {
+    index: 3,
+    title: 'Test 3.',
+    image: 'img/mandy-mercer.jpg'
+  }];
+
+  if($scope.giftNumber == 1) {
+    cardTypes = GiftOneCards;
+  }
+
+  if($scope.giftNumber == 2) {
+    cardTypes = GiftTwoCards;
+  }
+
+  if($scope.giftNumber == 3) {
+    cardTypes = GiftThreeCards;
+  }
+
+  if($scope.giftNumber == 4) {
+    cardTypes = GiftFourCards;
+  }
+
+  if($scope.giftNumber == 5) {
+    cardTypes = GiftFiveCards;
+  }
 
   $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
 
@@ -106,7 +215,13 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
   };
 
   $scope.addCard = function(index) {
-    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    var cardIndex;
+    if(index >= cardTypes.length - 1) {
+      cardIndex = 0;
+    } else {
+      cardIndex = index + 1
+    }
+    var newCard = cardTypes[cardIndex];
     newCard.id = Math.random();
     $scope.cards.push(angular.extend({}, newCard));
   }

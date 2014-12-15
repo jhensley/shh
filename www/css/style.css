@@ -22,6 +22,17 @@ ion-nav-view,
     background: none;
 }
 
+a {
+    text-decoration: none;
+}
+
+.buttons.left {
+    float: left;
+}
+.buttons.right {
+    float: right;
+}
+
 /* Animations */
 .fade-in-out.ng-enter, .fade-in-out .ng-enter {
     -webkit-animation: fadeIn 0.3s;
@@ -47,9 +58,9 @@ ion-nav-view,
     left: 50%;
     top: 50%;
     width: 300px;
-    height: 400px;
+    height: 390px;
     margin-left: -150px;
-    margin-top: -200px;
+    margin-top: -217px;
     box-sizing: border-box;
     background-color: rgba(255,255,255,.85);
     border-radius: 4px;
@@ -96,6 +107,10 @@ ion-nav-view,
     line-height: 15px;
     width: 200px;
     margin: 100px auto;
+}
+
+#start-card p.gift-4  {
+    margin-top: 70px;
 }
 
 #footer .button {

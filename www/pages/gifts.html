@@ -1,11 +1,11 @@
 <section class="gifts" ng-controller="CardsCtrl">
-    <swipe-cards>
-        <swipe-card on-card-swipe="cardSwiped()" id="start-card">
+    <swipe-cards height="400">
+        <swipe-card on-card-swipe="cardSwiped(3)" id="start-card">
             <img src="img/logo.png" width="100px"/>
             <span>You've opened {{ gift }}!</b></span>
-            <p>Swipe down for some interesting facts about this gift.</p>
+            <p class="gift-{{giftNumber}}">Swipe down for your clues based on this gift.</p>
         </swipe-card>
-        <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)">
+        <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped(card.index)">
             <div ng-controller="CardCtrl">
                 <div class="title">
                     {{card.title}}
@@ -13,11 +13,16 @@
                 <div class="image">
                     <img ng-src="{{card.image}}">
                 </div>
-                <div class="button-bar">
-                    <button class="button button-clear button-positive" ng-click="goAway()">Answer</button>
-                    <button class="button button-clear button-positive" ng-click="goAway()">Decline</button>
-                </div>
             </div>
         </swipe-card>
     </swipe-cards>
 </section>
+<ion-footer-bar align-title="center" class="bar-assertive">
+    <a class="buttons" ui-sref="solve">
+        <button class="button">Solve the puzzle</button>
+    </a>
+    &nbsp;
+    <a class="buttons" ui-sref="gifts({id: nextGift})" ng-if="nextGift">
+        <button class="button">Next Gift</button>
+    </a>
+</ion-footer-bar>
