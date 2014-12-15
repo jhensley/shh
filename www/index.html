@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
+
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -15,16 +16,18 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
+    <!-- swipe cards -->
+    <script src="js/swipe-cards.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="shh" class="{{bodyClass}}" ng-controller="PageController" />
+  <body ng-app="shh" class="{{bodyClass}}" />
     <ion-pane>
       <ion-content>
-        <ui-view></ui-view>
+        <ion-nav-view animation="fade-in-out"></ion-nav-view>
       </ion-content>
     </ion-pane>
   </body>

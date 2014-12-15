@@ -21,11 +21,47 @@ angular.module('shh', ['ionic'])
 
     $stateProvider.state('home', {
       url: '/',
-      templateUrl: pageDir + 'home.html'
+      templateUrl: pageDir + 'home.html',
+      controller: 'HomeController'
+    });
+
+    $stateProvider.state('rules', {
+      url: '/rules',
+      templateUrl: pageDir + 'rules.html',
+      controller: 'RulesController'
+    });
+
+    $stateProvider.state('gifts', {
+      url: '/gifts',
+      templateUrl: pageDir + 'gifts.html',
+      controller: 'GiftsController'
+    });
+
+    $stateProvider.state('where', {
+      url: '/where',
+      templateUrl: pageDir + 'where.html',
+      controller: 'WhereController'
     });
 
     $urlRouterProvider.otherwise("/");
 })
-.controller('PageController', ['$rootScope', function($rootScope) {
+.controller('HomeController', ['$rootScope', '$scope', function($rootScope, $scope) {
   $rootScope.bodyClass='home-bg';
+  $rootScope.headerTitle = "Unlock-a-Gift";
+  $rootScope.rightButtons = [{
+    type: 'button-clear',
+    content: 'Get Started',
+    tap: function(e) {
+      $location.path("/#/rules");
+    }
+  }];
+}])
+.controller('WhereController', ['$rootScope', '$scope', function($rootScope, $scope) {
+  $rootScope.bodyClass='where-bg';
+}])
+.controller('RulesController', ['$rootScope', '$scope', function($rootScope, $scope) {
+  $rootScope.bodyClass='rules-bg';
+}])
+.controller('GiftsController', ['$rootScope', '$scope', function($rootScope, $scope) {
+  $rootScope.bodyClass='gifts-bg';
 }])
