@@ -42,6 +42,30 @@ a {
     height: 100%;
 }
 
+/* VISUAL */
+
+.branding {
+    text-align: center;
+    width: 100%;
+    background: rgba(0,0,0,0.1);
+    padding: 40px 0;
+}
+
+.branding img {
+    padding-bottom: 8px;
+    border-bottom: 1px solid white;
+    margin-bottom: 0;
+}
+
+.logo-tag {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
 
 /* Animations */
 .fade-in-out.ng-enter, .fade-in-out .ng-enter {
