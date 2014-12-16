@@ -5,7 +5,7 @@
             <span>You've opened {{ gift }}!</b></span>
             <p class="gift-{{giftNumber}}">Swipe down for your clues based on this gift.</p>
         </swipe-card>
-        <swipe-card on-card-swipe="cardSwiped(7)" id="start-card" ng-show="showHints">
+        <swipe-card on-card-swipe="cardSwiped(7)" id="start-card" ng-show="showHints" ng-class="{'show': showHints}">
             <img src="img/logo.png" width="100px"/>
             <span>Giving up so soon?</b></span>
             <p class="gift-{{giftNumber}}">Swipe down for a few hints.</p>
