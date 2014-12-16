@@ -3,6 +3,8 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
+var unlockTries = 0;
+
 angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -35,6 +37,12 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
       url: '/gifts/{id:[0-9]{1,4}}',
       templateUrl: pageDir + 'gifts.html',
       controller: 'GiftsController'
+    });
+
+    $stateProvider.state('hints', {
+      url: '/hints',
+      templateUrl: pageDir + 'gifts.html',
+      controller: 'HintsController'
     });
 
     $stateProvider.state('where', {
@@ -73,8 +81,11 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
 }])
 .controller('SolveController', ['$rootScope', '$scope', function($rootScope, $scope) {
   $rootScope.bodyClass='solve-bg';
+  if(unlockTries >= 2) {
+    $scope.directToHints = true;
+  }
 }])
-.controller('GiftsController', ['$rootScope', '$scope', '$stateParams', function($rootScope, $scope, $stateParams) {
+.controller('GiftsController', ['$rootScope', '$scope', '$stateParams', '$state', function($rootScope, $scope, $stateParams, $state) {
   $rootScope.bodyClass='gifts-bg';
   $scope.giftNumber = $stateParams.id;
   if ($stateParams.id == 1) {
@@ -89,14 +100,21 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
   if ($stateParams.id == 4) {
     $scope.gift = "Midnight in the Garden of Good and Evil";
   }
+  if ($stateParams.id == 5) {
+    $scope.gift = "a can of Honey Bee Salve";
+  }
   if($stateParams.id < 5) {
     $scope.nextGift = parseInt($stateParams.id)+1;
   }
 }])
-.controller('CardsCtrl', ['$scope', '$ionicSwipeCardDelegate', function($scope, $ionicSwipeCardDelegate) {
+.controller('HintsController', ['$rootScope', function($rootScope) {
+  $rootScope.bodyClass='hints-bg';
+  $rootScope.showHints = true;
+}])
+.controller('CardsCtrl', ['$scope', '$rootScope', '$ionicSwipeCardDelegate', function($scope, $rootScope, $ionicSwipeCardDelegate) {
   var GiftOneCards = [{
     index: 0,
-    title: 'This statue stands in Ellis Square - one of twenty-two squares of his birthplace.',
+    title: 'This statue stands in <b>Ellis Square</b> - one of twenty-two squares of <b>his birthplace</b>.',
     image: 'img/johnny-mercer-statue.jpg'
   }, {
     index: 1,
@@ -104,7 +122,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
     image: 'img/mercer-capitol.jpg'
   }, {
     index: 2,
-    title: 'The Mercer House built in 1860 still stands in his hometown, though he never lived there.',
+    title: '<b>The Mercer House</b> built in 1860 still stands in <b>his hometown</b>, though he never lived there.',
     image: 'img/mercer-house.jpg'
   }, {
     index: 3,
@@ -118,7 +136,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
     image: 'img/bullock-affeck.jpg'
   }, {
     index: 1,
-    title: "Bullock purchased this home after shooting the movie, loving the film's final setting.",
+    title: "Bullock purchased this home after shooting the movie, loving <b>the film's final setting</b>.",
     image: 'img/bullock-home.jpg'
   }, {
     index: 2,
@@ -136,7 +154,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
     image: 'img/rooster.jpg'
   }, {
     index: 1,
-    title: 'The creator of these kitchen accessories has chickens at her home off the Georgia coast.',
+    title: 'The creator of these kitchen accessories has chickens at her home <b>off the Georgia coast</b>.',
     image: 'img/paula-deen.jpg'
   }, {
     index: 2,
@@ -150,38 +168,38 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
 
   var GiftFourCards = [{
     index: 0,
-    title: 'Simply known as "The Book" in the location of this non-fiction tale.',
-    image: 'img/johnny-mercer-statue.jpg'
+    title: '<b>Locally</b> known as "The Book" in <b>the setting of this non-fiction based tale</b>.',
+    image: 'img/book.jpg'
   }, {
     index: 1,
     title: 'Once a drug store this cafe has become famous thanks to "The Book".',
     image: 'img/clarys.jpg'
   }, {
     index: 2,
-    title: 'Test 2.',
-    image: 'img/mercer-house.jpg'
+    title: 'Hotel tax revenues rose about twenty-five percent in the two years following the book.',
+    image: 'img/inn.jpg'
   }, {
     index: 3,
-    title: 'Test 3.',
-    image: 'img/mandy-mercer.jpg'
+    title: "Like many other sites, <b>Bonaventure Cemetery</b> became famous after publication of the book.",
+    image: 'img/cemetery.jpg'
   }];
 
   var GiftFiveCards = [{
     index: 0,
-    title: 'Test 0.',
-    image: 'img/johnny-mercer-statue.jpg'
+    title: 'Honey contains all necessities sustain life: enzymes, vitamins, minerals, and water.',
+    image: 'img/honey.jpg'
   }, {
     index: 1,
-    title: 'Test 1.',
-    image: 'img/mercer-capitol.jpg'
+    title: "You'll find several stores, including this brand's flagship store in <b>the company's namesake city</b>.",
+    image: 'img/bee-store.jpg'
   }, {
     index: 2,
-    title: 'Test 2.',
-    image: 'img/mercer-house.jpg'
+    title: 'A bee flies to 1,000 flowers to make a single spoonful of honey.',
+    image: 'img/bee-flower.jpg'
   }, {
     index: 3,
-    title: 'Test 3.',
-    image: 'img/mandy-mercer.jpg'
+    title: 'The <b>Savannah</b> Bee Company grew out of a passion for bees, honey and beekeeping.',
+    image: 'img/honey-love.jpg'
   }];
 
   if($scope.giftNumber == 1) {
@@ -202,6 +220,51 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
 
   if($scope.giftNumber == 5) {
     cardTypes = GiftFiveCards;
+  }
+
+  if($rootScope.showHints) {
+    cardTypes = [
+      {
+        index: 0,
+        title: 'CD: This statue stands in <b>Ellis Square</b> - one of twenty-two squares of <b>his birthplace</b>.',
+        image: 'img/johnny-mercer-statue.jpg'
+      },
+      {
+        index: 1,
+        title: 'CD: <b>The Mercer House</b> built in 1860 still stands in <b>his hometown</b>, though he never lived there.',
+        image: 'img/mercer-house.jpg'
+      },
+      {
+        index: 2,
+        title: "Movie: Bullock purchased this home after shooting the movie, loving <b>the film's final setting</b>.",
+        image: 'img/bullock-home.jpg'
+      },
+      {
+        index: 3,
+        title: 'Chickens: The creator of these kitchen accessories has chickens at her home <b>off the Georgia coast</b>.',
+        image: 'img/paula-deen.jpg'
+      },
+      {
+        index: 4,
+        title: 'Book: <b>Locally</b> known as "The Book" in <b>the setting of this non-fiction based tale</b>.',
+        image: 'img/book.jpg'
+      },
+      {
+        index: 5,
+        title: "Book: Like many other sites, <b>Bonaventure Cemetery</b> became famous after publication of the book.",
+        image: 'img/cemetery.jpg'
+      },
+      {
+        index: 6,
+        title: "Salve: You'll find several stores, including this brand's flagship store in <b>the company's namesake city</b>.",
+        image: 'img/bee-store.jpg'
+      },
+      {
+        index: 7,
+        title: 'Salve: The <b class="red">Savannah</b> Bee Company grew out of a passion for bees, honey and beekeeping.',
+        image: 'img/honey-love.jpg'
+      }
+    ]
   }
 
   $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);

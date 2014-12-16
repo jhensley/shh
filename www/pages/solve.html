@@ -1,1 +1,13 @@
-Solve it
+<section class="rules">
+    <img src="img/logo.png" width="100px"/>
+    <h5 class="logo-tag">Unlock-a-Gift</h5>
+    <h3>Think you know the secret?</h3>
+    <p>Enter the key below to find out.</p>
+    <form>
+        <input id="key" name="key" placeholder="Unlock here..."/>
+        <input type="submit"/>
+    </form>
+    <button ng-show="directToHints">
+        <a ui-sref="hints">Looks like you could use a hint, click here!</a>
+    </button>
+</section>
