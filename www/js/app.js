@@ -3,9 +3,10 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var unlockTries = 0;
+var unlockTries = 0,
+    hasSeenHintsCards;
 
-angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
+angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -45,16 +46,55 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
       controller: 'HintsController'
     });
 
-    $stateProvider.state('where', {
-      url: '/where',
-      templateUrl: pageDir + 'where.html',
-      controller: 'WhereController'
-    });
-
     $stateProvider.state('solve', {
       url: '/solve',
       templateUrl: pageDir + 'solve.html',
       controller: 'SolveController'
+    });
+
+    $stateProvider.state('reveal', {
+      url: '/reveal',
+      templateUrl: pageDir + 'reveal.html',
+      controller: 'RevealController'
+    });
+
+    $stateProvider.state('tabs', {
+      url: "/reveal-tabs",
+      abstract: true,
+      templateUrl: pageDir + "reveal/tabs.html"
+    }).state('tabs.home', {
+      url: "/home",
+      views: {
+        'home-tab': {
+          templateUrl: pageDir + "reveal/home.html",
+          controller: 'RevealHomeController'
+        }
+      }
+    }).state('tabs.where', {
+      url: "/where",
+      views: {
+        'where-tab': {
+          templateUrl: pageDir + "reveal/where.html",
+          controller: 'RevealWhereController'
+        }
+      }
+    }).state('tabs.when', {
+      url: "/when",
+      views: {
+        'when-tab': {
+          templateUrl: pageDir + "reveal/when.html",
+          controller: 'RevealHomeController'
+        }
+      }
+    })
+    .state('tabs.details', {
+      url: "/details",
+      views: {
+        'details-tab': {
+          templateUrl: pageDir + "reveal/details.html",
+          controller: 'RevealHomeController'
+        }
+      }
     });
 
     $urlRouterProvider.otherwise("/");
@@ -73,17 +113,52 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
 .controller('HomeController', ['$rootScope', '$scope', function($rootScope, $scope) {
   $rootScope.bodyClass='home-bg';
 }])
-.controller('WhereController', ['$rootScope', '$scope', function($rootScope, $scope) {
-  $rootScope.bodyClass='where-bg';
-}])
 .controller('RulesController', ['$rootScope', '$scope', function($rootScope, $scope) {
   $rootScope.bodyClass='rules-bg';
 }])
-.controller('SolveController', ['$rootScope', '$scope', function($rootScope, $scope) {
+.controller('RevealController', ['$rootScope', '$scope', function($rootScope, $scope) {
+  $rootScope.bodyClass='reveal-bg';
+}])
+.controller('RevealHomeController', ['$rootScope', '$scope', function($rootScope, $scope) {
+  $rootScope.bodyClass='reveal-bg';
+}])
+.controller('SolveController', ['$rootScope', '$scope', '$location', '$timeout', function($rootScope, $scope, $location, $timeout) {
   $rootScope.bodyClass='solve-bg';
-  if(unlockTries >= 2) {
-    $scope.directToHints = true;
-  }
+    var answer = 'savannah',
+        wrapper = document.getElementsByClassName("shakenbake"),
+        hintsBtn = document.getElementsByClassName("hints-button"),
+        secondHint = document.getElementsByClassName("second-hint"),
+        thirdHint = document.getElementsByClassName("third-hint");
+
+    $scope.animationComplete = false;
+    $scope.submitted = false;
+    $scope.submit = function() {
+      var guess = $scope.text.toLowerCase();
+      if(guess==answer) {
+        $location.path( "/reveal-tabs/home" );
+      } else {
+        $scope.isWrongAnswer = true;
+        angular.element(wrapper).addClass('shake');
+        unlockTries++;
+      }
+
+      if(unlockTries >= 3 && !hasSeenHintsCards) {
+        angular.element(hintsBtn).addClass('show');
+      }
+
+      if(unlockTries >= 6 && hasSeenHintsCards) {
+        angular.element(secondHint).addClass('show');
+      }
+
+      if(unlockTries >= 9 && hasSeenHintsCards) {
+        angular.element(thirdHint).addClass('show');
+      }
+
+      $timeout(function(){
+        angular.element(wrapper).removeClass('shake');
+      }, 500);
+      $scope.text = '';
+    };
 }])
 .controller('GiftsController', ['$rootScope', '$scope', '$stateParams', '$state', function($rootScope, $scope, $stateParams, $state) {
   $rootScope.bodyClass='gifts-bg';
@@ -110,6 +185,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
 .controller('HintsController', ['$rootScope', function($rootScope) {
   $rootScope.bodyClass='hints-bg';
   $rootScope.showHints = true;
+  hasSeenHintsCards = true;
 }])
 .controller('CardsCtrl', ['$scope', '$rootScope', '$ionicSwipeCardDelegate', function($scope, $rootScope, $ionicSwipeCardDelegate) {
   var GiftOneCards = [{
@@ -294,4 +370,60 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards'])
     var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
     card.swipe();
   };
-}]);
+}])
+.controller('RevealWhereController', function($scope, $ionicLoading, $compile) {
+  function initialize() {
+    var myLatlng = new google.maps.LatLng(32.06536, -81.095202);
+
+    var mapOptions = {
+      center: myLatlng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map"),
+      mapOptions);
+
+    //Marker + infowindow + angularjs compiled ng-click
+    var contentString = "<div>Savannah, Georgia!</div>";
+    var compiled = $compile(contentString)($scope);
+
+    var infowindow = new google.maps.InfoWindow({
+      content: compiled[0]
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Uluru (Ayers Rock)'
+    });
+
+    infowindow.open(map,marker);
+
+
+    $scope.map = map;
+  }
+  initialize();
+
+  $scope.centerOnMe = function() {
+    if(!$scope.map) {
+      return;
+    }
+
+    $scope.loading = $ionicLoading.show({
+      content: 'Getting current location...',
+      showBackdrop: false
+    });
+
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+      $scope.loading.hide();
+    }, function(error) {
+      alert('Unable to get location: ' + error.message);
+    });
+  };
+
+  $scope.clickTest = function() {
+    alert('Example of infowindow with ng-click')
+  };
+
+});
