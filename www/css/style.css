@@ -1,5 +1,6 @@
 ion-nav-view,
-.pane {
+.pane,
+body {
     background: #dc595f;
 }
 
