@@ -1,28 +1,6 @@
-.home-bg {
-    background-image: url('../img/christmas-tree-ornament-bokeh-1280x800-wide-wallpapers.net.jpg');
-    background-position-x: -400px;
-}
-
-.where-bg {
-    background: yellow;
-}
-
-.rules-bg {
-    background: orange;
-}
-
-.hints-bg {
-    background: darkred;
-}
-
-.gifts-bg {
-    background: rgb(0, 0, 25);
-    background-position: top right;
-}
-
 ion-nav-view,
 .pane {
-    background: none;
+    background: #dc595f;
 }
 
 a {
