@@ -48,7 +48,11 @@ a {
     text-align: center;
     width: 100%;
     background: rgba(0,0,0,0.1);
-    padding: 40px 0 30px;
+    padding: 40px 0 25px;
+}
+
+.contentarea {
+    padding: 20px;
 }
 
 .branding img {
@@ -65,6 +69,16 @@ a {
     color: white;
     margin: 0;
     padding: 0;
+}
+
+.contentarea h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: rgba(255,255,255,.75);
+    font-size: 18px;
+}
+
+.contentarea p {
 }
 
 /* Animations */
