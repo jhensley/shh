@@ -40,11 +40,9 @@
     <!-- swipe cards -->
     <script src="js/swipe-cards.js"></script>
     <script type="text/javascript">
-      document.body.addEventListener('touchmove', function(event) {
-        console.log(event.source);
-        //if (event.source == document.body)
+      document.ontouchmove = function(event){
         event.preventDefault();
-      }, false);
+      }
     </script>
   </head>
   <body ng-app="shh" class="{{bodyClass}}" />
