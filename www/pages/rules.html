@@ -1,15 +1,18 @@
 <section class="rules">
-    <img src="img/logo.png" width="100px"/>
-    <h5 class="logo-tag">Unlock-a-Gift</h5>
-    <h3>The Rules</h3>
-    <ol>
-        <li>Open the packages in numerical order</li>
-        <li>After you've opened a gift, return to the app</li>
-        <li>For each gift there are four cards with information</li>
-        <li>Some of the cards provide clues - it's up to you to figure out which ones</li>
-        <li>Decipher the common theme between all five gifts - that will be your key</li>
-        <li>Solve the puzzle by entering the key</li>
-    </ol>
-    <p>Don't worry - if you get stuck, the app will help you -- but you're a mystery solving genius (thanks Murder She Wrote)!</p>
-    <button><a ui-sref="gifts({id:1})">I've opened the first gift</a></button>
+    <div class="branding">
+        <img src="img/logo.png" width="100px"/>
+        <h5 class="logo-tag">Christmas Key</h5>
+    </div>
+    <div class="contentarea">
+        <h1>First, a few rules</h1>
+        <ol>
+            <li>Open the packages in numerical order</li>
+            <li>Only click the "Next Gift" after you've opened a new gift</li>
+            <li>Some cards will reveal clues - figure out which are real</li>
+            <li>Decipher the theme of the gifts - and you'll unlock the key</li>
+            <li>When you think you're ready, click "Solve"</li>
+        </ol>
+        <p>Don't worry - if you get stuck, the app will help you!</p>
+        <button class="buttons"><a ui-sref="gifts({id:1})">I've opened the first gift</a></button>
+    </div>
 </section>

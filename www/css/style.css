@@ -81,7 +81,7 @@ a {
 }
 
 .contentarea p {
-    color: rgba(255,255,255,.50);
+    color: rgba(255,255,255,.65);
 }
 
 .contentarea .buttons {
@@ -107,6 +107,37 @@ a {
 
 .contentarea .buttons a:active {
     color: white;
+}
+
+.contentarea ol {
+    margin-bottom: 20px;
+}
+
+.contentarea ol li {
+    counter-increment: step-counter;
+    list-style-position: inside;
+    color: rgba(255,255,255,.65);
+    margin-bottom: 1px;
+    height: 30px;
+    font-size: 12px;
+    margin-left: 40px;
+    margin-top: 5px;
+}
+
+.contentarea ol li::before {
+    content: counter(step-counter);
+    margin-right: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    color: rgba(255,255,255,.5);
+    font-size: 25px;
+    background: rgba(0,0,0,.1);
+    height: 30px;
+    width: 30px;
+    margin-left: -40px;
+    margin-top: -5px;
+    position: absolute;
+    padding: 5px 0 0 8px;
 }
 
 /* Animations */
