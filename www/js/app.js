@@ -91,7 +91,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate', 'ipCookie
     });
 
 
-    var restoredState = decodeURIComponent(getCookieValue('restorestate'));
+    var restoredState = decodeURIComponent(getCookieValue('restorestate')) || '/';
 
     $urlRouterProvider.otherwise(restoredState);
 })
