@@ -154,6 +154,10 @@ a {
     width: 200px;
 }
 
+.center.bar .button-bar > .button, .center.bar .buttons > .button {
+    margin-left: 103px;
+}
+
 .contentarea .buttons a:active {
     color: white;
 }
