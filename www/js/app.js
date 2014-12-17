@@ -52,12 +52,6 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate'])
       controller: 'SolveController'
     });
 
-    $stateProvider.state('reveal', {
-      url: '/reveal',
-      templateUrl: pageDir + 'reveal.html',
-      controller: 'RevealController'
-    });
-
     $stateProvider.state('tabs', {
       url: "/reveal-tabs",
       abstract: true,
@@ -86,8 +80,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate'])
           controller: 'RevealHomeController'
         }
       }
-    })
-    .state('tabs.details', {
+    }).state('tabs.details', {
       url: "/details",
       views: {
         'details-tab': {

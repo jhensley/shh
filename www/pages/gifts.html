@@ -1,4 +1,8 @@
 <section class="gifts" ng-controller="CardsCtrl" ng-class="{'show-hints': showHints}">
+    <div class="branding slim">
+        <img src="img/logo.png" width="30px"/>
+        <h5 class="logo-tag">Unlock-a-Gift</h5>
+    </div>
     <swipe-cards height="400">
         <swipe-card on-card-swipe="cardSwiped(3)" id="start-card" ng-show="!showHints">
             <img src="img/logo.png" width="100px"/>
@@ -20,7 +24,7 @@
         </swipe-card>
     </swipe-cards>
 </section>
-<ion-footer-bar align-title="center" class="bar-dark">
+<ion-footer-bar align-title="center" class="bar-light">
     <a class="buttons" ui-sref="solve">
         <button class="button" ng-class="{'button-balanced': !nextGift}">Solve</button>
     </a>

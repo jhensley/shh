@@ -61,6 +61,27 @@ a {
     margin-bottom: 0;
 }
 
+.branding.slim {
+    position: relative;
+}
+
+.branding.slim img {
+    border-bottom: none;
+    border-right: 1px solid white;
+    margin: 0;
+    padding: 0;
+    padding-right: 8px;
+    position: absolute;
+    left: 10px;
+    top: 30px;
+}
+
+.branding.slim .logo-tag {
+    position: absolute;
+    left: 50px;
+    top: 33px;
+}
+
 .logo-tag {
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
@@ -71,7 +92,8 @@ a {
     padding: 0;
 }
 
-.contentarea h1 {
+.contentarea h1,
+.contentarea h4{
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
     color: rgb(255,255,255);
@@ -80,8 +102,22 @@ a {
     padding: 0;
 }
 
+.contentarea dl {
+    color: rgba(255,255,255,.65);
+}
+
+.contentarea h4 {
+    font-size: 18px;
+}
+
 .contentarea p {
     color: rgba(255,255,255,.65);
+    margin-bottom: 20px;
+}
+
+.contentarea img.full {
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .contentarea .buttons {
@@ -98,11 +134,24 @@ a {
     height: 40px;
 }
 
+.contentarea .buttons.hints-button.show {
+    background: rgba(255,255,255, .6);
+    color: #dc595f;
+}
+
+.contentarea .buttons.hints-button.show a{
+    color: #dc595f;
+}
+
 .contentarea .buttons a:visited,
 .contentarea .buttons a:link,
 .contentarea .buttons a {
     color: rgba(0,0,0,.3);
     text-decoration: none;
+}
+
+.bar .button-bar > .button, .bar .buttons > .button {
+    width: 150px;
 }
 
 .contentarea .buttons a:active {
@@ -111,6 +160,29 @@ a {
 
 .contentarea ol {
     margin-bottom: 20px;
+}
+
+.contentarea form {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.contentarea form input {
+    border-radius: 5px;
+    border: none;
+    padding: 0 5px;
+    color: darkslategrey;
+}
+
+.contentarea form input.submit {
+    margin: 10px;
+    background: mediumspringgreen;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-weight: bold;
+    color: rgba(0,0,0,.3);
+    padding: 8px 20px;
+    border: none;
 }
 
 .contentarea ol li {

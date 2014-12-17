@@ -1,17 +1,21 @@
 <section class="solve">
-    <img src="img/logo.png" width="100px"/>
-    <h5 class="logo-tag">Unlock-a-Gift</h5>
-    <h3>Think you know the secret?</h3>
-    <p>Enter the key below to find out.</p>
-    <form ng-submit="submit()">
-        <div class="shakenbake">
-            <input class="key" type="text" name="text" ng-model="text" placeholder="Enter the key" ng-class="{'has-error': isWrongAnswer}" />
-        </div>
-        <input type="submit" id="submit" value="Submit" />
-    </form>
-    <button class="hints-button">
-        <a ui-sref="hints">Looks like you could use a hint, click here!</a>
-    </button>
-    <p class="second-hint hinter">What is the name of the city in Georgia that Paula Deen is from?</p>
-    <p class="third-hint hinter">Fill in the blanks: S_v____h</p>
+    <div class="branding">
+        <img src="img/logo.png" width="100px"/>
+        <h5 class="logo-tag">Christmas Key</h5>
+    </div>
+    <div class="contentarea">
+        <h1>Think you know the secret?</h1>
+        <p>Okay super sleuth, you think you've found the key? Enter it below to find out.</p>
+        <form ng-submit="submit()">
+            <div class="shakenbake">
+                <input class="key" type="text" name="text" ng-model="text" placeholder="Enter the key" ng-class="{'has-error': isWrongAnswer}" />
+            </div>
+            <input type="submit" id="submit" value="Submit" class="submit" />
+        </form>
+        <p class="second-hint hinter">Name the city Paula Deen is from.</p>
+        <p class="third-hint hinter">Fill in the blanks: S_v____h</p>
+        <button class="buttons hints-button">
+            <a ui-sref="hints">Looks like you could use a hint, click here!</a>
+        </button>
+    </div>
 </section>
