@@ -91,9 +91,9 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate'])
     });
 
 
-    var restoredState = decodeURIComponent(localStorage.getItem('restorestate')) || '/';
+    var restoredState = localStorage.getItem('restorestate') || '/';
 
-    $urlRouterProvider.otherwise(restoredState);
+    $urlRouterProvider.otherwise(decodeURIComponent(restoredState));
 })
 .run(function($rootScope) {
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
