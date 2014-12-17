@@ -90,7 +90,25 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate'])
       }
     });
 
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise(localStorage.restorestate || '/');
+})
+.run(function($rootScope) {
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+
+    var restore = toState.name;
+
+    if(toParams.id) {
+      restore = restore + '/' + toParams.id;
+    }
+
+    localStorage.restorestate = restore;
+
+  });
+
+  //let everthing know that we need to save state now.
+  window.onbeforeunload = function(event) {
+    $rootScope.$broadcast('savestate');
+  };
 })
 .directive('noScroll', function($document) {
   return {
