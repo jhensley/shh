@@ -90,7 +90,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate'])
       }
     });
 
-    $urlRouterProvider.otherwise(localStorage.restorestate || '/');
+    $urlRouterProvider.otherwise(localStorage.getItem('restorestate') || '/');
 })
 .run(function($rootScope) {
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
@@ -101,7 +101,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate'])
       restore = restore + '/' + toParams.id;
     }
 
-    localStorage.restorestate = restore;
+    localStorage.setItem('restorestate',restore);
 
   });
 
