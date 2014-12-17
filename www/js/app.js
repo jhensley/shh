@@ -6,7 +6,7 @@
 var unlockTries = 0,
     hasSeenHintsCards;
 
-angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate', 'ipCookie'])
+angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -91,11 +91,11 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate', 'ipCookie
     });
 
 
-    var restoredState = decodeURIComponent(getCookieValue('restorestate')) || '/';
+    var restoredState = decodeURIComponent(localStorage.getItem('restorestate')) || '/';
 
     $urlRouterProvider.otherwise(restoredState);
 })
-.run(function($rootScope, ipCookie) {
+.run(function($rootScope) {
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
 
     var restore = toState.name;
@@ -104,7 +104,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate', 'ipCookie
       restore = restore + '/' + toParams.id;
     }
 
-    ipCookie('restorestate',restore, { expires: 30, path: '/' });
+    localStorage.setItem('restorestate',restore);
 
   });
 
