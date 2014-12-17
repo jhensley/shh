@@ -84,7 +84,7 @@ a {
     color: rgba(255,255,255,.50);
 }
 
-.contentarea .button {
+.contentarea .buttons {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     background: mediumspringgreen;
@@ -94,14 +94,19 @@ a {
     position: absolute;
     bottom: 40px;
     left: 10%;
+    padding; 10px 0;
+    height: 40px;
 }
 
-.contentarea .button a:active,
-.contentarea .button a:visited,
-.contentarea .button a:link,
-.contentarea .button a {
+.contentarea .buttons a:visited,
+.contentarea .buttons a:link,
+.contentarea .buttons a {
     color: rgba(0,0,0,.3);
     text-decoration: none;
+}
+
+.contentarea .buttons a:active {
+    color: white;
 }
 
 /* Animations */
