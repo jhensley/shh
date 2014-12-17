@@ -104,7 +104,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate', 'ipCookie
       restore = restore + '/' + toParams.id;
     }
 
-    ipCookie('restorestate',restore);
+    ipCookie('restorestate',restore, { expires: 30 });
 
   });
 
