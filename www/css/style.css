@@ -151,7 +151,7 @@ a {
 }
 
 .bar .button-bar > .button, .bar .buttons > .button {
-    width: 150px;
+    width: 200px;
 }
 
 .contentarea .buttons a:active {

@@ -377,7 +377,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate'])
       mapOptions);
 
     //Marker + infowindow + angularjs compiled ng-click
-    var contentString = "<div>Savannah, Georgia!</div>";
+    var contentString = "<div>Savannah, GA!</div>";
     var compiled = $compile(contentString)($scope);
 
     var infowindow = new google.maps.InfoWindow({
