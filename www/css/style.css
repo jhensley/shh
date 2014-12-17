@@ -239,11 +239,12 @@ a {
     width: 300px;
     height: 340px;
     margin-left: -150px;
-    margin-top: -172px;
+    margin-top: -227px;
     box-sizing: border-box;
     background-color: rgb(255,255,255);
     overflow: hidden;
     -webkit-animation-fill-mode: forwards;
+    -webkit-transform: translate3d(0,0,0);
 }
 
 .swipe-card .title {
