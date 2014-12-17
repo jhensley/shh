@@ -73,12 +73,35 @@ a {
 
 .contentarea h1 {
     font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    color: rgba(255,255,255,.75);
-    font-size: 18px;
+    font-weight: 100;
+    color: rgb(255,255,255);
+    font-size: 26px;
+    margin: 0 0 15px;
+    padding: 0;
 }
 
 .contentarea p {
+    color: rgba(255,255,255,.50);
+}
+
+.contentarea .button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    background: mediumspringgreen;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    position: absolute;
+    bottom: 40px;
+    left: 10%;
+}
+
+.contentarea .button a:active,
+.contentarea .button a:visited,
+.contentarea .button a:link,
+.contentarea .button a {
+    color: rgba(0,0,0,.3);
+    text-decoration: none;
 }
 
 /* Animations */
