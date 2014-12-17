@@ -223,9 +223,9 @@ a {
     animation: fadeIn 0.3s;
     position: absolute; }
 .fade-in-out.ng-leave, .fade-in-out .ng-leave {
-    -webkit-animation: fadeOut 0.3s;
-    -moz-animation: fadeOut 0.3s;
-    animation: fadeOut 0.3s;
+    -webkit-animation: fadeOut 0;
+    -moz-animation: fadeOut 0;
+    animation: fadeOut 0;
     position: absolute; }
 
 /* Swipe Cards */
