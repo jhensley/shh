@@ -4,15 +4,11 @@
         <h5 class="logo-tag">Christmas Key</h5>
     </div>
     <swipe-cards height="400">
-        <swipe-card on-card-swipe="cardSwiped(3)" id="start-card" ng-show="!showHints">
+        <swipe-card on-card-swipe="cardSwiped(3)" id="start-card">
             <img src="img/logo.png" width="100px"/>
-            <span>You've opened {{ gift }}!</b></span>
+            <span ng-if="!showHints">You've opened {{ gift }}!</span>
+            <span ng-if="showHints">Hints for {{ gift }}</span>
             <p class="gift-{{giftNumber}}">Swipe down for your clues based on this gift.</p>
-        </swipe-card>
-        <swipe-card on-card-swipe="cardSwiped(7)" id="start-card" ng-show="showHints" ng-class="{'show': showHints}">
-            <img src="img/logo.png" width="100px"/>
-            <span>Giving up so soon?</b></span>
-            <p class="gift-{{giftNumber}}">Swipe down for a few hints.</p>
         </swipe-card>
         <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped(card.index)">
             <div ng-controller="CardCtrl">
@@ -29,7 +25,11 @@
         <button class="button" ng-class="{'button-balanced': !nextGift}">Solve</button>
     </a>
     &nbsp;
-    <a class="buttons" ui-sref="gifts({id: nextGift})" ng-if="nextGift">
+    <a class="buttons" ui-sref="gifts({id: nextGift})" ng-if="nextGift && !showHints">
         <button class="button button-balanced">Next Gift</button>
+    </a>
+
+    <a class="buttons" ui-sref="hints({id: nextGift})" ng-if="nextGift && showHints">
+        <button class="button button-balanced">Next Hint</button>
     </a>
 </ion-footer-bar>
