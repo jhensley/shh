@@ -3,6 +3,8 @@ body {
 }
 
 ion-nav-view,
+ion-content,
+section
 .pane,
 body {
     background: #dc595f;
