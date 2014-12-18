@@ -6,7 +6,7 @@
 var unlockTries = 0,
     hasSeenHintsCards;
 
-angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate'])
+angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate', 'ui.slimscroll'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
