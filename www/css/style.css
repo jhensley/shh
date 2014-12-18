@@ -2,6 +2,7 @@ ion-nav-view,
 .pane,
 body {
     background: #dc595f;
+    width: 100%;
 }
 
 a {
