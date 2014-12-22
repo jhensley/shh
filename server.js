@@ -3,18 +3,19 @@ var path = require('path');
 
 var app = express();
 
-var html_dir = './www/';
+var html_dir = path.join(__dirname, '/www/');
 var port = process.env.PORT || 3000;
+
+
+app.get('/', function(req, res) {
+    res.sendFile(html_dir + 'blank.html');
+});
 
 app.use(express.static(html_dir));
 
-//app.get('/', function(req, res) {
-//    res.sendFile(html_dir + 'index.html');
+//app.get("/", function(req, res) {
+//    res.send("Heroku Demo!");
 //});
-
-app.get("/", function(req, res) {
-    res.send("Heroku Demo!");
-});
 
 var server = app.listen(port, function () {
 

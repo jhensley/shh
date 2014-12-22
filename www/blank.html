@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html manifest="http://shh-its-a-secret.herokuapp.com/manifest.appcache">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, scrollable=no, width=device-width">
+    <title></title>
+
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:100,400,700' rel='stylesheet' type='text/css'>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyB16sGmIekuGIvYOfNoW9T44377IU2d2Es&sensor=true"></script>
+
+    <meta name="apple-mobile-web-app-title" content="Christmas Key">
+    <link rel="apple-touch-icon" href="img/app-logo-60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/app-logo-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/app-logo-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/app-logo-152.png">
+
+    <!-- iPhone 6 -->
+    <link href="img/startup-large.png" media="(device-width: 375px) and (device-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <!-- iPhone 5 -->
+    <link href="img/startup.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body ng-app="shh" class="{{bodyClass}}" />
+<ion-pane>
+    <ion-content scroll="false">
+        <ion-nav-view animation="fade-in-out" class="until"></ion-nav-view>
+    </ion-content>
+</ion-pane>
+</body>
+</html>
