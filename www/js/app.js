@@ -96,15 +96,10 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate', 'ui.slims
       }
     });
 
-    var now = Date.now();
-    var openDate = Date.parse('December 25, 2014');
     var restoredState = localStorage.getItem('restorestate') || '/';
 
-    if(now >= openDate) {
-      $urlRouterProvider.otherwise(decodeURIComponent(restoredState));
-    } else {
-      $urlRouterProvider.otherwise('/until');
-    }
+    $urlRouterProvider.otherwise(decodeURIComponent(restoredState));
+
 
 })
 .run(function($rootScope) {
