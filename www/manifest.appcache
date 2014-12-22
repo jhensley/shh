@@ -1,12 +1,11 @@
 CACHE MANIFEST
-# v7
+# v8
 
 NETWORK:
 *
 
 CACHE:
 
-index.html
 pages/gifts.html
 pages/home.html
 pages/reveal.html
@@ -69,3 +68,4 @@ http://fonts.googleapis.com/css?family=Roboto:100,400,700
 
 NETWORK:
 /
+index.html

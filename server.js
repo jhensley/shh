@@ -7,7 +7,7 @@ var html_dir = path.join(__dirname, '/www/');
 var port = process.env.PORT || 3000;
 
 var now = Date.now();
-var openDate = Date.parse('December 22, 2014');
+var openDate = Date.parse('December 25, 2014');
 
 //app.get('/', function (req, res) {
 //    res.sendFile(html_dir + 'index.html');
