@@ -9,19 +9,19 @@ var port = process.env.PORT || 3000;
 var now = Date.now();
 var openDate = Date.parse('December 25, 2014');
 
-app.get('/', function (req, res) {
-    res.sendFile(html_dir + 'index.html');
-});
-//
-//if(now >= openDate) {
-//    app.get('/', function (req, res) {
-//        res.sendFile(html_dir + 'index.html');
-//    });
-//} else {
-//    app.get('/', function (req, res) {
-//        res.sendFile(html_dir + 'blank.html');
-//    });
-//}
+//app.get('/', function (req, res) {
+//    res.sendFile(html_dir + 'index.html');
+//});
+
+if(now >= openDate) {
+    app.get('/', function (req, res) {
+        res.sendFile(html_dir + 'index.html');
+    });
+} else {
+    app.get('/', function (req, res) {
+        res.sendFile(html_dir + 'blank.html');
+    });
+}
 
 app.use(express.static(html_dir));
 
