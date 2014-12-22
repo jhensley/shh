@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v3
+# v4
 
 NETWORK:
 *
@@ -59,6 +59,7 @@ img/logo.png
 img/startup.png
 img/startup-large.png
 img/when-calendar.png
+img/il_570xN.396549755_e05g.jpg
 
 http://maps.gstatic.com/maps-api-v3/api/js/19/4/common.js
 http://maps.gstatic.com/maps-api-v3/api/js/19/4/util.js

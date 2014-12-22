@@ -40,6 +40,12 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate', 'ui.slims
       controller: 'GiftsController'
     });
 
+    $stateProvider.state('until', {
+      url: '/until',
+      templateUrl: pageDir + 'until.html',
+      controller: 'HomeController'
+    });
+
     $stateProvider.state('hints', {
       url: '/hints/{id:[0-9]{1}}',
       templateUrl: pageDir + 'gifts.html',
@@ -90,10 +96,16 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate', 'ui.slims
       }
     });
 
-
+    var now = Date.now();
+    var openDate = Date.parse('December 25, 2014');
     var restoredState = localStorage.getItem('restorestate') || '/';
 
-    $urlRouterProvider.otherwise(decodeURIComponent(restoredState));
+    if(now >= openDate) {
+      $urlRouterProvider.otherwise(decodeURIComponent(restoredState));
+    } else {
+      $urlRouterProvider.otherwise('/until');
+    }
+
 })
 .run(function($rootScope) {
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
