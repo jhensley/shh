@@ -114,7 +114,7 @@ angular.module('shh', ['ionic', 'ionic.contrib.ui.cards', 'ngAnimate', 'ui.slims
 
     var restore = toState.name;
 
-    if (restore == 'until' || restore == 'home') {
+    if (restore == 'until' || restore == 'home' || restore.indexOf('tabs') >! 0) {
       restore = '/'
     }
 
